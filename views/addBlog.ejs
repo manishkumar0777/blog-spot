@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Add New Blog</title>
+    <!-- Add FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add custom CSS for animations and effects -->
+    <style>
+        /* Custom styles for modern look */
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+        textarea {
+            resize: none;
+            min-height: 200px;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        .form-control:hover {
+            border-color: #0d6efd;
+        }
+        .file-input {
+            position: relative;
+            overflow: hidden;
+        }
+        .file-input input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            opacity: 0;
+            outline: none;
+            cursor: pointer;
+        }
+        .file-input label {
+            display: block;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .file-input label:hover {
+            background-color: #e9ecef;
+        }
+        h1 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+
+    <div class="container">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-pen-alt me-2"></i>Add New Blog
+        </h1>
+        <form method="post" action="/blog" enctype="multipart/form-data">
+            <!-- Title Field -->
+            <div class="mb-4">
+                <label for="title" class="form-label">
+                    <i class="fas fa-heading me-2"></i>Title
+                </label>
+                <input name="title" id="title" aria-describedby="title" class="form-control" type="text" placeholder="Enter your blog title" required />
+            </div>
+
+            <!-- Body Field -->
+            <div class="mb-4">
+                <label for="body" class="form-label">
+                    <i class="fas fa-edit me-2"></i>Body
+                </label>
+                <textarea name="body" class="form-control" placeholder="Write your blog here..." id="body" required></textarea>
+            </div>
+
+            <!-- Cover Image Field -->
+            <div class="mb-4">
+                <label for="coverImage" class="form-label">
+                    <i class="fas fa-image me-2"></i>Cover Image
+                </label>
+                <div class="file-input">
+                    <input name="coverImage" id="coverImage" aria-describedby="coverImage" class="form-control" type="file" accept="image/*" required />
+                    <label for="coverImage">Choose a cover image</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-3 text-center">
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i>Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <%- include("./partials/head") %>
+</body>
+</html>

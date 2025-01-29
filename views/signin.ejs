@@ -3,28 +3,167 @@
 
 <head>
   <%- include("./partials/head") %>
-    <title>SignIn</title>
+  <title>SignIn</title>
+  <!-- Add FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Add Google Fonts for better typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Add custom CSS for animations and effects -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      margin: 0;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      animation: slideUp 1s ease-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #555;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.3);
+    }
+
+    .form-text {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    .btn-primary {
+      background-color: #2575fc;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #6a11cb;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .footer a {
+      color: #2575fc;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
-  <%- include("./partials/nav") %>
 
-    <div class="container">
-      <form method="post" action="/user/signin">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <!-- Centered SignIn Form -->
+  <div class="container">
+    <h1><i class="fas fa-sign-in-alt me-2"></i>Sign In</h1>
+    <form method="post" action="/user/signin">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" required>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Submit</button>
+    </form>
+
+    <div class="footer">
+      <p>Don't have an account? <a href="/user/signup">Sign Up</a></p>
     </div>
+  </div>
 
-    <%- include("./partials/head") %>
 </body>
 
 </html>

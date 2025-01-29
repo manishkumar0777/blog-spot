@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 
 const { checkForAuthenticationCookie } = require("./middlewares/authentication");
+const Blog = require("./models/blog");
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/blog-spot")
@@ -17,6 +18,7 @@ const app = express();
 
 //routers
 const userRoutes = require("./routes/user");
+const blogRoutes = require("./routes/blog");
 
 
 
@@ -28,14 +30,20 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve('./public')))
 
 //routes
 app.use("/user" , userRoutes);
-app.get("/" , (req , res) => {
+app.get("/" , async (req , res) => {
+    const allBlogs = await Blog.find({});
     return res.render("home", {
         user : req.user,
+        blogs : allBlogs,
     });
-})
+});
+
+app.use("/blog", blogRoutes);
+
 
 
 //starting server
