@@ -1,7 +1,8 @@
+const mongoose = require('mongoose');
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv").config();
-const mongoose = require('mongoose');
+
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');  
 
@@ -10,10 +11,10 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 const Blog = require("./models/blog");
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/blog-spot")
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {console.log("db connected")})
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 //routers
